@@ -1,7 +1,7 @@
+
 #!/data/data/com.termux/files/usr/bin/bash
 
 pkg install root-repo x11-repo proot xz-utils neofetch pulseaudio -y
-
 echo ""
 parrot=2024
 build=rolling
@@ -56,9 +56,12 @@ echo ""
 echo "Writing launch script"
 cat > $bin <<- EOM
 #!/data/data/com.termux/files/usr/bin/bash
+
 cd \$(dirname \$0)
+
 ## Start pulseaudio
 pulseaudio --start --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" --exit-idle-time=-1
+
 ## Unset LD_PRELOAD in case termux-exec is installed
 unset LD_PRELOAD
 command="proot"
@@ -108,7 +111,7 @@ EOM
      echo "Making $linux executable"
      chmod +x $bin
      echo "Fixing permissions for $linux"
-     
+    
 echo ""
 echo "#Parrot Repositories
 deb https://deb.parrot.sh/direct/parrot lory main contrib non-free non-free-firmware
@@ -134,6 +137,3 @@ rm -rf ~/.bash_profile
 exit" > $folder/root/.bash_profile
 bash $bin
      clear
-     echo ""
-     echo "You can login to Linux with 'parrot' script next time"
-     echo ""
