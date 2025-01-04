@@ -22,12 +22,13 @@ export PULSE_SERVER=127.0.0.1
 rm -rf /run/dbus/dbus.pid
 dbus-launch startxfce4
 " > /usr/local/bin/vncstart
+
    echo "vncserver -geometry 1600x900 -name remote-desktop :1" > /usr/local/bin/vnc-start
    echo "vncserver -kill :*" > /usr/local/bin/vnc-stop
    chmod +x ~/.vnc/xstartup
    chmod 700 /usr/local/bin/*
-   
    clear
+   
 #Browser Fix
 wget https://raw.githubusercontent.com/wahasa/Ubuntu/main/Patch/passwd -P .vnc/
 apt install firefox-esr -y
@@ -42,11 +43,4 @@ sleep 2
 wget -O $(find ~/.mozilla/firefox -name *.default-esr)/user.js https://raw.githubusercontent.com/wahasa/Ubuntu/main/Patch/user.js
 
 rm .vnc/passwd
-   clear
-   echo ""
-   echo "Vnc Server address will run at 127.0.0.1:5901"
-   echo ""
-   echo "Start Vnc Server, run vnc-start"
-   echo "Stop  Vnc Server, run vnc-stop"
-   echo ""
-rm de-xfce.sh
+   
