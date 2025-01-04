@@ -7,7 +7,7 @@ apt update && apt install wget -y && wget -qO- https://raw.githubusercontent.com
 ```
 - VNC XFCE Desktop Environment
 ```
-
+wget -qO- https://raw.githubusercontent.com/xiv3r/Parrot-Sec-Termux/refs/heads/main/gui.sh | sh
 ```
 
 # Run
