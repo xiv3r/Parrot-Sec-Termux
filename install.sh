@@ -19,7 +19,7 @@ EOF
 neofetch --ascii_distro Parrot -L
 
 ### Download Tarball
-axel -a --search -o parrot-arm64.tar.xz https://github.com/EXALAB/Anlinux-Resources/raw/refs/heads/master/Rootfs/Parrot/arm64/parrot-rootfs-arm64.tar.xz
+axel -a --search -o parrot-arm64.tar.xz https://github.com/xiv3r/Parrot-Sec-Termux/releases/download/arm64/parrot-arm64.tar.xz
 
 ### Decompressed tarball
 echo "Decompressing Rootfs...!!!"
