@@ -11,7 +11,7 @@ axel -a --search -o parrot-arm64.tar.xz https://github.com/EXALAB/Anlinux-Resour
 
 ### Decompressed tarball
 echo "Decompressing Rootfs...!!!"
-proot --link2symlink bsdtar -xpJf parrot-arm64.tar.xz --exclude='dev'
+proot --link2symlink bsdtar -xpJf parrot-arm64.tar.xz 2>/dev/null
 
 ### Make executable bin
 wget -O $PREFIX/bin/parrot https://raw.githubusercontent.com/xiv3r/Parrot-Sec-Termux/refs/heads/main/parrot/parrot
