@@ -3,7 +3,7 @@
 ### install dependencies 
 pkg install root-repo x11-repo axel bsdtar proot xz-utils neofetch pulseaudio -y
 
-###
+### Ascii
 neofetch --ascii_distro Parrot -L
 
 ### Download Tarball
@@ -12,12 +12,6 @@ axel -a --search -o parrot-arm64.tar.xz https://github.com/EXALAB/Anlinux-Resour
 ### Decompressed tarball
 echo "Decompressing Rootfs...!!!"
 proot --link2symlink bsdtar -xpJf parrot-arm64.tar.xz --exclude='dev'
-
-### Make directory binds
-mkdir -p parrot-arm64/binds
-echo "localhost" > parrot-arm64/etc/hostname
-echo "127.0.0.1 localhost" > parrot-arm64/etc/hosts
-echo "nameserver 8.8.8.8" > parrot-arm64/etc/resolv.conf
 
 ### Make executable bin
 cat >$PREFIX/bin/parrot << EOF
