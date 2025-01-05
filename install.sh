@@ -1,7 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 ### install dependencies 
-apt install root-repo x11-repo axel bsdtar proot xz-utils neofetch pulseaudio -y
+apt install axel bsdtar proot neofetch pulseaudio -y
 
 ### Ascii
 neofetch --ascii_distro Parrot -L
@@ -15,6 +15,9 @@ proot --link2symlink bsdtar -xpJf parrot-arm64.tar.xz 2>/dev/null
 
 ### Make executable bin
 wget -O $PREFIX/bin/parrot https://raw.githubusercontent.com/xiv3r/Parrot-Sec-Termux/refs/heads/main/parrot/parrot
+
+### Start-up
+echo "parrot" >>$PREFIX/etc/bash.bashrc
 
 ### Fix shebang
 termux-fix-shebang $PREFIX/bin/parrot
