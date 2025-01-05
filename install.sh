@@ -1,7 +1,8 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 ### install dependencies 
-apt install root-repo x11-repo axel bsdtar proot xz-utils neofetch pulseaudio tigervnc xorg-xhost -y
+apt install root-repo x11-repo axel bsdtar proot xz-utils neofetch pulseaudio -y
+
 ### Termux vnc
 echo "vncserver -geometry 1600x900 -listen tcp :1 && DISPLAY=:1 xhost +" > $PREFIX/bin/vncstart
 chmod 700 $PREFIX/bin/vncstart
