@@ -10,4 +10,4 @@ export PULSE_SERVER=127.0.0.1
 startxfce4
 " > /bin/vncstart
 chmod 700 /bin/vncstart
-echo "vncstart >> .bashrc
+echo "vncstart" >> .bashrc
