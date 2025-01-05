@@ -6,11 +6,19 @@ Parrot Sec with GUI in Termux
 apt update && apt install wget -y && wget -qO- https://raw.githubusercontent.com/xiv3r/Parrot-Sec-Termux/refs/heads/main/install.sh | sh && parrot
 ```
 - VNC XFCE Desktop Environment
+> login
+```
+parrot
+```
+> and execute
 ```
 wget -qO- https://raw.githubusercontent.com/xiv3r/Parrot-Sec-Termux/refs/heads/main/gui.sh | sh
 ```
-
-# Run
+# Login
 ```
 parrot
+```
+# Logout
+```
+exit
 ```
