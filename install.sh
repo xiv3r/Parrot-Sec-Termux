@@ -20,4 +20,4 @@ chmod +x .parrot
 ### make executable
 echo "bash .parrot" >$PREFIX/bin/parrot
 chmod 700 $PREFIX/bin/parrot
-bash .parrot
+parrot
