@@ -1,34 +1,8 @@
 #!/bin/bash
 
-apt-get install udisks2 -y
-echo " " > /var/lib/dpkg/info/udisks2.postinst
-apt-mark hold udisks2
-dpkg-reconfigure tzdata
-apt-get install xfce4 xfce4-goodies xfce4-terminal parole tigervnc-standalone-server dbus-x11 -y
-apt-get --fix-broken install
+apt install xfce4 xfce4-goodies xfce4-terminal parole tigervnc-standalone-server dbus-x11 -y
 
-#Setup the necessary files
-mkdir -p ~/.vnc
+cat >>.bashrc << EOF
+vncserver -xstartup /usr/bin/startxfce4 -geometry 2340x1080
+ROF
 
-echo "
-#!/bin/bash
-
-export PULSE_SERVER=127.0.0.1
-xrdb $HOME/.Xresources
-startxfce4
-" > ~/.vnc/xstartup
-
-echo "
-#!/bin/bash
-
-export DISPLAY=:1
-export PULSE_SERVER=127.0.0.1
-rm -rf /run/dbus/dbus.pid
-dbus-launch startxfce4
-" > /usr/local/bin/vncstart
-
-   echo "vncserver -geometry 1600x900 -name remote-desktop :1" > /usr/local/bin/vnc-start
-   echo "vncserver -kill :*" > /usr/local/bin/vnc-stop
-   chmod +x ~/.vnc/xstartup
-   chmod 700 /usr/local/bin/*
-   clear
