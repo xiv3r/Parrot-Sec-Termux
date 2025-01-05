@@ -6,3 +6,9 @@ cat >>.bashrc << EOF
 vncserver -xstartup /usr/bin/startxfce4 -geometry 2340x1080
 EOF
 
+cat >/usr/local/bin/vncstart << EOF
+#!/bin/bash
+export DISPLAY=:1
+export PULSE_SERVER=127.0.0.1
+startxfce4
+EOF
