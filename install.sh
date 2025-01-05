@@ -14,38 +14,7 @@ echo "Decompressing Rootfs...!!!"
 proot --link2symlink bsdtar -xpJf parrot-arm64.tar.xz --exclude='dev'
 
 ### Make executable bin
-cat >$PREFIX/bin/parrot << EOF
-#!/data/data/com.termux/files/usr/bin/bash -e
-
-pulseaudio --start \
-    --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" \
-    --exit-idle-time=-1
-    
-unset LD_PRELOAD
-
-cmdline="proot \
-        --link2symlink \
-        -0 \
-        -r parrot-arm64 \
-        -b /dev \
-        -b /proc \
-        -b /sdcard \
-        -b parrot-arm64/root:/dev/shm \
-        -w /root \
-           /usr/bin/env -i \
-           HOME=/root \
-           PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin \
-           TERM=$TERM \
-           LANG=C.UTF-8 \
-           /bin/bash --login"
-
-cmd="$@"
-if [ "$#" == "0" ];then
-    exec $cmdline
-else
-    $cmdline -c "$cmd"
-fi
-EOF
+wget -O $PREFIX/bin/parrot https://raw.githubusercontent.com/xiv3r/Parrot-Sec-Termux/refs/heads/main/parrot/parrot
 
 ### Fix shebang
 termux-fix-shebang $PREFIX/bin/parrot
