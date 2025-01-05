@@ -2,7 +2,11 @@
 
 apt install xfce4 xfce4-goodies xfce4-terminal parole tigervnc-standalone-server dbus-x11 -y
 
+### Termux vnc
+echo "vncserver -geometry 1600x900 -listen tcp :1 && DISPLAY=:1 xhost +" > $PREFIX/bin/vncstart
+chmod 700 $PREFIX/bin/vncstart
 
+### Parrot vnc
 cat >/usr/bin/vncstart << EOF
 #!/bin/bash
 export DISPLAY=:1
@@ -10,4 +14,10 @@ export PULSE_SERVER=127.0.0.1
 startxfce4
 EOF
 chmod 700 /usr/bin/vncstart
-echo "vncstart" >> .bashrc
+
+echo "vncstart >> .bashrc
+
+echo"
+vncstart &
+parrot
+" >> $PREFIX/etc/bash.bashrc
