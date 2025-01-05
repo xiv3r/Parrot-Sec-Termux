@@ -13,7 +13,7 @@ parrot
 ```
 > and execute
 ```
-wget -qO- https://raw.githubusercontent.com/xiv3r/Parrot-Sec-Termux/refs/heads/main/gui.sh | sh
+wget -qO- https://raw.githubusercontent.com/xiv3r/Parrot-Sec-Termux/refs/heads/main/parrot/gui.sh | sh
 ```
 # Login
 ```
