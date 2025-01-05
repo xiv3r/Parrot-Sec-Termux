@@ -3,12 +3,14 @@
 apt install xfce4 xfce4-goodies xfce4-terminal parole tigervnc-standalone-server dbus-x11 -y
 
 cat >>.bashrc << EOF
-vncserver -xstartup /usr/bin/startxfce4 -geometry 2340x1080
+vncserver -xstartup /usr/bin/startxfce4 -geometry 1440x1080
 EOF
 
-cat >/usr/local/bin/vncstart << EOF
+cat >/usr/bin/vncstart << EOF
 #!/bin/bash
 export DISPLAY=:1
 export PULSE_SERVER=127.0.0.1
 startxfce4
 EOF
+chmod 700 /usr/bin/vncstart
+echo "vncstart" >> .bashrc
