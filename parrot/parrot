@@ -1,16 +1,18 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-cd $HOME
+cd $(dirname $0)
+## Start pulseaudio
 pulseaudio --start --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" --exit-idle-time=-1
+## Unset LD_PRELOAD in case termux-exec is installed
 unset LD_PRELOAD
 command="proot"
 command+=" --kill-on-exit"
 command+=" --link2symlink"
 command+=" -0"
 command+=" -r parrot-arm64"
-if [ -n "\$(ls -A parrot-arm64/binds)" ]; then
+if [ -n "$(ls -A parrot-arm64/binds)" ]; then
    for f in parrot-arm64/binds/* ;do
-       . \$f
+       . $f
    done
 fi
 command+=" -b /dev"
@@ -24,21 +26,24 @@ command+=" -b /proc/self/fd/1:/dev/stdout"
 command+=" -b /proc/self/fd/2:/dev/stderr"
 command+=" -b /sys"
 command+=" -b /data/data/com.termux/files/usr/tmp:/tmp"
-command+=" -b parro-arm64/root:/dev/shm"
-command+=" -b /data/data/com.termux/files/home:/root"
+command+=" -b parrot-arm64/root:/dev/shm"
+## Uncomment the following line to have access to the home directory of termux
+#command+=" -b /data/data/com.termux/files/home:/root"
+## Uncomment the following line to mount /sdcard directly to /
 command+=" -b /sdcard"
 command+=" -b /mnt"
 command+=" -w /root"
 command+=" /usr/bin/env -i"
 command+=" HOME=/root"
 command+=" PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games"
-command+=" TERM=\$TERM"
+command+=" TERM=$TERM"
 command+=" LC_ALL=C"
 command+=" LANG=en_US.UTF-8"
 command+=" LANGUAGE=en_US"
 command+=" /bin/bash --login"
-com="\$@"
-if [ -z "\$1" ];then
-   exec \$command
+com="$@"
+if [ -z "$1" ];then
+   exec $command
 else
-   \$command -c "\$com"
+   $command -c "$com"
+fi
