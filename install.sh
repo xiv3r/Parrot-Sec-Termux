@@ -1,10 +1,14 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 ### install dependencies 
-pkg install root-repo x11-repo axel bsdtar proot xz-utils neofetch pulseaudio -y
+apt install root-repo x11-repo axel bsdtar proot xz-utils neofetch pulseaudio tigervnc xorg-xhost -y
 
+### Add vnc
+echo "vncserver -geometry 1600x900 -listen tcp :1 && DISPLAY=:1 xhost +" > $PREFIX/bin/vncstart
+chmod 700 $PREFIX/bin/vncstart
 ### Fix audio 
 cat >>$PREFIX/etc/bash.bashrc << EOF
+vncstart
 pulseaudio --start \
     --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" \
     --exit-idle-time=-1
