@@ -5,9 +5,8 @@ pkg install root-repo x11-repo axel bsdtar proot xz-utils neofetch pulseaudio -y
 ### Download Tarball
 axel -a --search -o parrot-arm64.tar.xz https://github.com/EXALAB/Anlinux-Resources/raw/refs/heads/master/Rootfs/Parrot/arm64/parrot-rootfs-arm64.tar.xz
 ### Decompress tarball
-mkdit -p parrot-arm64
 echo "Decompressing Rootfs...!!!"
-proot --link2symlink bsdtar -xpJf parrot-arm64.tar.xz -C parrot-arm64  --exclude='dev' ||:
+proot --link2symlink bsdtar -xpJf parrot-arm64.tar.xz --exclude='dev' ||:
 ###
 mkdir -p parrot-arm64/binds
 echo "localhost" > parrot-arm64/etc/hostname
