@@ -4,5 +4,5 @@ apt install xfce4 xfce4-goodies xfce4-terminal parole tigervnc-standalone-server
 
 cat >>.bashrc << EOF
 vncserver -xstartup /usr/bin/startxfce4 -geometry 2340x1080
-ROF
+EOF
 
