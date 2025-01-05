@@ -1,9 +1,9 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
 cd $(dirname $0)
-## Start pulseaudio
+# Start pulseaudio
 pulseaudio --start --load="module-native-protocol-tcp auth-ip-acl=127.0.0.1 auth-anonymous=1" --exit-idle-time=-1
-## Unset LD_PRELOAD in case termux-exec is installed
+# Unset LD_PRELOAD in case termux-exec is installed
 unset LD_PRELOAD
 command="proot"
 command+=" --kill-on-exit"
@@ -27,9 +27,8 @@ command+=" -b /proc/self/fd/2:/dev/stderr"
 command+=" -b /sys"
 command+=" -b /data/data/com.termux/files/usr/tmp:/tmp"
 command+=" -b parrot-arm64/root:/dev/shm"
-## Uncomment the following line to have access to the home directory of termux
+# Uncomment the following line to have access to the home directory of termux
 #command+=" -b /data/data/com.termux/files/home:/root"
-## Uncomment the following line to mount /sdcard directly to /
 command+=" -b /sdcard"
 command+=" -b /mnt"
 command+=" -w /root"
