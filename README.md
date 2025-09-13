@@ -14,3 +14,7 @@ parrot
 ```
 exit
 ```
+# Uninstall 
+```
+uninstall-parrot
+```
