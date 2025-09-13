@@ -4,24 +4,22 @@
 apt install axel bsdtar proot neofetch -y
 
 ### Ascii
-neofetch --ascii_distro Parrot -L
+neofetch --ascii_distro Parrot
+
+### Start-up
+sed -i '/parrot/d' $PREFIX/etc/bash.bashrc
+echo "parrot" >> $PREFIX/etc/bash.bashrc
 
 ### Download Tarball
-axel -a --search -o parrot-arm64.tar.xz https://github.com/xiv3r/Parrot-Sec-Termux/releases/download/arm64/parrot-arm64.tar.xz
+axel -o parrot-arm64.tar.xz https://github.com/xiv3r/Parrot-Sec-Termux/releases/download/arm64/parrot-arm64.tar.xz
 
 ### Decompressed tarball
-echo "Decompressing Rootfs...!!!"
+echo "Decompressing Rootfs Please Wait...!!!"
 proot --link2symlink bsdtar -xpJf parrot-arm64.tar.xz 2>/dev/null
 
 ### Make executable bin
-wget -O $PREFIX/bin/parrot https://raw.githubusercontent.com/xiv3r/Parrot-Sec-Termux/refs/heads/main/parrot/parrot
+wget -qO $PREFIX/bin/parrot https://raw.githubusercontent.com/xiv3r/Parrot-Sec-Termux/refs/heads/main/parrot/parrot
+chmod +x $PREFIX/bin/parrot
 
 # fix .bashrc terminal
-wget -O parrot-arm64/root/.bashrc https://raw.githubusercontent.com/xiv3r/Parrot-Sec-Termux/refs/heads/main/parrot/root.bashrc
-
-### Start-up
-echo "parrot" >>$PREFIX/etc/bash.bashrc
-
-### Fix shebang
-termux-fix-shebang $PREFIX/bin/parrot
-chmod 700 $PREFIX/bin/parrot
+wget -qO parrot-arm64/root/.bashrc https://raw.githubusercontent.com/xiv3r/Parrot-Sec-Termux/refs/heads/main/parrot/root.bashrc
