@@ -10,6 +10,16 @@ neofetch --ascii_distro Parrot
 sed -i '/parrot/d' $PREFIX/etc/bash.bashrc
 echo "parrot" >> $PREFIX/etc/bash.bashrc
 
+# Uninstall
+cat > $PREFIX/bin/uninstall-parrot << EOF
+#!/data/data/com.termux/files/usr/bin/bash
+
+sed -i '/parrot/d' $PREFIX/etc/bash.bashrc
+rm -rf parrot-arm64
+rm -f $PREFIX/bin/parrot
+EOF
+chmod +x $PREFIX/bin/uninstall-parrot
+
 ### Download Tarball
 axel -o parrot-arm64.tar.xz https://github.com/xiv3r/Parrot-Sec-Termux/releases/download/arm64/parrot-arm64.tar.xz
 
